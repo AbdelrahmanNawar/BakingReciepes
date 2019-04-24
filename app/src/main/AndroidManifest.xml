@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.alfa.bakingreciepes">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/icon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="bakingreciepes.MainActivity"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="bakingreciepes.RecipeActivity"
+            android:parentActivityName="bakingreciepes.MainActivity"
+            android:launchMode="singleTop"
+            >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bakingreciepes.MainActivity"> </meta-data>
+        </activity>
+        <activity android:name="bakingreciepes.DetailActivity"
+            android:supportsPictureInPicture="true"
+            android:resizeableActivity="true"
+            android:launchMode="singleTask"
+            android:parentActivityName="bakingreciepes.RecipeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="bakingreciepes.RecipeActivity"> </meta-data>
+        </activity>
+        <receiver android:name="bakingreciepes.Components.ComponentWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/ingredients_widget_info" />
+        </receiver>
+
+
+
+        <service android:name="bakingreciepes.MyWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+    </application>
+
+</manifest>
